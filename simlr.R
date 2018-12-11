@@ -15,5 +15,5 @@ for(number.clusters in 2:30) {
   output <- SIMLR(dat, c=number.clusters)
   
   cluster.names <- output$y$cluster
-  write(cluster.names, file=paste0("SIMLR_", number.clusters, ".txt"))
+  write(cluster.names, file=paste0("cluster_results/SIMLR_", number.clusters, ".txt"))
 }
