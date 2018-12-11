@@ -5,7 +5,7 @@
 
 library(SIMLR)
 
-setwd("~/repos/GCB536/")
+#setwd("~/repos/GCB536/")
 dat <- read.csv("data/CelegansRawCounts.csv")
 true.labels <- read.csv("data/Labels.csv")
 
