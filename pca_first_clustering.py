@@ -67,7 +67,7 @@ def main():
     dataset_pcs = run_pca(dataset, 15)
 
     out_file_name_base = './cluster_results/pca_kmeans_labels_c_X.csv'
-    for i in range(2,31):
+    for i in range(2,201):
         print("Running k-means for " + str(i) + " clusters")
         kmeans_labels = kMeans(dataset_pcs, i)
 
