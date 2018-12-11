@@ -66,13 +66,13 @@ def main():
     # feel would work best (or better yet use cross validation to pick)
     dataset_pcs = run_pca(dataset, 15)
 
-    out_file_name_base = './cluster_results/pca_kmeans_labels_X_clusters.csv'
+    out_file_name_base = './cluster_results/pca_kmeans_labels_c_X.csv'
     for i in range(2,31):
         print("Running k-means for " + str(i) + " clusters")
         kmeans_labels = kMeans(dataset_pcs, i)
 
         out_file_name = out_file_name_base.replace('X', str(i))
-        numpy.savetxt(out_file_name, kmeans_labels, delimiter=',')
+        numpy.savetxt(out_file_name, kmeans_labels, fmt='%d')
 
     # Didn't end up running spectral clustering as the PCA reduced data
     # caused it to crash
