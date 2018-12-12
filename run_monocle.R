@@ -27,8 +27,7 @@ unsup_clustering_genes
 HSMM <- setOrderingFilter(HSMM, unsup_clustering_genes$gene_id)
 plot_ordering_genes(HSMM)
 
-HSMM <- reduceDimension(HSMM, max_components = 3, num_dim = 6,
-						                reduction_method = 'tSNE', verbose = T)
+HSMM <- reduceDimension(HSMM, max_components = 2,reduction_method = 'ICA', verbose = T)
 
 HSMM <- clusterCells(HSMM, num_clusters = 2)
 plot_cell_clusters(HSMM, 1, 2, color = "CellType")
