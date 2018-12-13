@@ -76,11 +76,16 @@ def kMeans(dataset, num_clusters):
 def main():
     print("Reading data file...")
     dataset = numpy.genfromtxt('./data/CelegansRawCounts.csv', delimiter=',')
+    print(dataset.mean())
+    dataset += 1
+    print(dataset.mean())
+    dataset = numpy.log(dataset)
+    print(dataset.mean())
 
     print("Running tsne...")
     dataset_pcs = run_tsne(dataset, 3)
 
-    out_file_name_base = './cluster_results/tsne_kmeans_labels_c_X.csv'
+    out_file_name_base = './cluster_results/log_tsne_kmeans_labels_c_X.csv'
     for i in range(2,201):
         print("Running k-means for " + str(i) + " clusters")
         kmeans_labels = kMeans(dataset_pcs, i)
