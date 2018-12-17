@@ -142,11 +142,13 @@ legend(110, 0.55, legend=c("t-SNE kmeans", "log t-SNE kmeans", "PCA kmeans", "PC
        col=c("red", "green", "blue", "orange", "purple", "black"), lty=19, cex=0.8)
 title("t-SNE k-means vs PCA k-means validated on 6-cell-type labels")
 
-thing <- table(true.labels$V1, cluster.labels$tsne_kmeans[[6]])
+tsne.table <- table(true.labels$V2, cluster.labels$log_tsne_kmeans[[25]])
+pca.table <- table(true.labels$V2, cluster.labels$pca_log_norescaling_kmeans[[25]])
 
+png(filename = "figures/t-sne_cluster_heatmaps.png", width=600, height=600)
 heatmap.2(
-          as.matrix(thing),
-          cellnote=as.matrix(thing),
+          as.matrix(tsne.table),
+          #cellnote=as.matrix(thing),
           density.info = 'none',
           trace='none',
           dendrogram = 'both', 
@@ -154,10 +156,28 @@ heatmap.2(
           col=colorRampPalette(c("white", "red")), 
           notecol="black", 
           key=TRUE, 
-          margins=c(12,8), 
+          margins=c(12,12), 
+          key.xlab="Number of cells",
+          key.title="",
           scale='none',
-          breaks=seq(0, 500,length.out=101))
-
-biocLite()
-
-biocLite("monocle")
+          main="t-SNE, log trans",
+          breaks=seq(0, 100,length.out=101))
+dev.off()
+png(filename = "figures/pca_cluster_heatmaps.png", width=600, height=600)
+heatmap.2(
+          as.matrix(pca.table),
+          #cellnote=as.matrix(thing),
+          density.info = 'none',
+          trace='none',
+          dendrogram = 'both', 
+          sepcolor='black', 
+          col=colorRampPalette(c("white", "red")), 
+          notecol="black", 
+          key=TRUE, 
+          margins=c(12,12), 
+          key.xlab="Number of cells",
+          key.title="",
+          scale='none',
+          main="PCA, log-trans, no rescaling",
+          breaks=seq(0, 100,length.out=101))
+dev.off()
